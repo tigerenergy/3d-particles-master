@@ -94,7 +94,7 @@ class Model
             ------------------------------*/
 
             const sampler = new MeshSurfaceSampler(this.mesh).build()
-            const numParticles = 20000
+            const numParticles = 30000
             this.particlesGeometry = new THREE.BufferGeometry()
             const particlesPosition = new Float32Array(numParticles * 3)
             const particlesRandomness = new Float32Array(numParticles * 3)
@@ -145,7 +145,7 @@ class Model
             {
                 value: 1,
                 duration: .8,
-                delay: .3,
+                delay: .2,
                 ease: 'power3.out'
             })
     }
@@ -156,7 +156,7 @@ class Model
             {
                 value: 0,
                 duration: .8,
-                delay: .3,
+                delay: .2,
                 ease: 'power3.out',
                 onComplete: () =>
                 {
@@ -167,7 +167,7 @@ class Model
     }
     change()
     {
-        
+
     }
 }
 
