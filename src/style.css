@@ -1,12 +1,11 @@
-body 
-{
+body {
   margin: 0;
   padding: 0;
-  background: #000000;
+  background: #440b0b;
+  transition: 1s;
 }
 
-canvas 
-{
+canvas {
   position: fixed;
   z-index: -1;
   top: 0;
@@ -15,7 +14,7 @@ canvas
   height: 100%;
 }
 
-.controllers
+#controllers
 {
   position: fixed;
   z-index: 1;
@@ -23,8 +22,9 @@ canvas
   top: 0;
   text-align: center;
   width: 100%;
+  padding: 10px;
 }
-.buttons
+.button
 {
   border:none;
   background: #fff;

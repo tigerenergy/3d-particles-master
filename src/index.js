@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import Model from './model'
+
 /*------------------------------
 Renderer
 ------------------------------*/
@@ -46,25 +47,56 @@ const controls = new OrbitControls( camera, renderer.domElement )
 /*------------------------------
 Helpers
 ------------------------------*/
-const gridHelper = new THREE.GridHelper( 10, 10 )
-scene.add( gridHelper )
-const axesHelper = new THREE.AxesHelper( 5 )
-scene.add( axesHelper )
+// const gridHelper = new THREE.GridHelper( 10, 10 )
+// scene.add( gridHelper )
+// const axesHelper = new THREE.AxesHelper( 5 )
+// scene.add( axesHelper )
 
 /*------------------------------
 Models
 ------------------------------*/
-// const skull = new Model({
-//   name: 'skull',
-//   file: './models/skull.glb',
-//   scene: scene
-// })
+const skull = new Model({
+  name: 'skull',
+  file: './models/skull.glb',
+  scene: scene,
+  color1: 'red',
+  color2: 'yellow',
+  placeOnLoad: true
+})
 
 const horse = new Model({
   name: 'horse',
   file: './models/horse.glb',
-  scene: scene
+  scene: scene,
+  color1: 'blue',
+  color2: 'pink'
 })
+
+/*------------------------------
+Controllers
+------------------------------*/
+
+const bodyTag = document.querySelector('#bodyTag')
+console.log(bodyTag)
+const buttons = document.querySelectorAll('.button')
+buttons[0].addEventListener('click', () =>
+{
+  skull.add()
+  horse.remove()
+  bodyTag.style.backgroundColor='#440b0b'
+})
+buttons[1].addEventListener('click', () =>
+{
+  skull.remove()
+  horse.add()
+  bodyTag.style.backgroundColor='#170d77'
+})
+
+/*------------------------------
+Clock
+------------------------------*/
+const clock = new THREE.Clock()
+
 
 /*------------------------------
 Loop
@@ -72,6 +104,14 @@ Loop
 const animate = function () {
   requestAnimationFrame( animate )
   renderer.render( scene, camera )
+  if(skull.isActive)
+  {
+    skull.particlesMaterial.uniforms.uTime.value = clock.getElapsedTime()
+  }
+  if(horse.isActive)
+  {
+    horse.particlesMaterial.uniforms.uTime.value = clock.getElapsedTime()
+  }
 }
 animate()
 
