@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "gsap": "^3.6.0",
+    "tailwindcss": "^2.2.19",
     "three": "^0.125.2"
   }
 }
